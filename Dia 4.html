@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Comida à Lista de Compras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #73a8f8;
+        }
+        
+        h1 {
+            margin: 0;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(238, 27, 27, 0.1);
+        }
+        
+        p {
+            margin-top: 0;
+            text-align: center;
+        }
+        
+        .category-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .category-buttons button {
+            flex-grow: 1;
+            margin: 0 5px;
+            padding: 12px 0;
+            background-color: rgb(255, 254, 254)
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        .category-buttons button:hover {
+            background-color: #0e0e0eaf;
+        }
+        
+        .category-list {
+            margin-bottom: 20px;
+        }
+        
+        .category-list h3 {
+            margin: 0;
+        }
+        
+        .category-list ul {
+            padding: 0;
+            list-style-type: none;
+        }
+        
+        .category-list ul li {
+            margin-bottom: 5px;
+        }
+        
+        .message {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Adicionar Comida à Lista de Compras</h1>
+        <br>
+        <div class="category-buttons">
+            <button onclick="adicionarComida('Frituras')">Frituras</button>
+            <button onclick="adicionarComida('Frios')">Frios</button>
+            <button onclick="adicionarComida('Doces')">Doces</button>
+            <button onclick="adicionarComida('Carnes')">Carnes</button>
+            <button onclick="adicionarComida('Bebidas')">Bebidas</button>
+        </div>
+        <div class="category-list">
+            <h3>Frituras</h3>
+            <ul id="frituras-lista"></ul>
+        </div>
+        <div class="category-list">
+            <h3>Frios</h3>
+            <ul id="frios-lista"></ul>
+        </div>
+        <div class="category-list">
+            <h3>Doces</h3>
+            <ul id="doces-lista"></ul>
+        </div>
+        <div class="category-list">
+            <h3>Carnes</h3>
+            <ul id="carnes-lista"></ul>
+        </div>
+        <div class="category-list">
+            <h3>Bebidas</h3>
+            <ul id="bebidas-lista"></ul>
+        </div>
+        <p class="message" id="message"></p>
+    </div>
+
+    <script>
+        const categorias = {
+            "Frituras": "frituras-lista",
+            "Frios": "frios-lista",
+            "Doces": "doces-lista",
+            "Carnes": "carnes-lista",
+            "Bebidas": "bebidas-lista"
+        };
+
+        function adicionarComida(categoria) {
+            const comida = prompt("Qual comida você deseja adicionar?");
+            if (comida === null || comida === "") {
+                alert("Inválido!");
+                return;
+            }
+
+            const listaId = categorias[categoria];
+            const lista = document.getElementById(listaId);
+
+            const listItem = document.createElement("li");
+            listItem.textContent = comida;
+            lista.appendChild(listItem);
+
+            document.getElementById("message").textContent = `Você adicionou ${comida} à categoria ${categoria}.`;
+        }
+    </script>
+</body>
+</html>
